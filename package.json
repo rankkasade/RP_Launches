@@ -1,14 +1,39 @@
 {
   "name": "rp_launches",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
-  "scripts": {},
   "keywords": [],
   "author": "Hanna Rykouskaya",
   "license": "ISC",
   "devDependencies": {
     "@playwright/test": "^1.42.1",
-    "@types/node": "^20.11.30"
+    "@types/node": "^20.11.30",
+    "chai": "^5.1.0",
+    "eslint": "^8.57.0",
+    "jest": "^29.7.0",
+    "mocha": "^10.4.0"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "playwright": "^1.42.1",
+    "playwright-core": "^1.42.1",
+    "undici-types": "^5.26.5",
+    "winston": "^3.13.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rankkasade/RP_Launches.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rankkasade/RP_Launches/issues"
+  },
+  "homepage": "https://github.com/rankkasade/RP_Launches#readme",
+  "description": "",
+  "scripts": {
+    "test api": "jest",
+    "test": "mocha test/**/*.spec.js",
+    "lint": "npx eslint test/core --color --fix --quiet"
   }
 }
