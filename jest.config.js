@@ -1,4 +1,5 @@
 module.exports = {
-    preset: '@playwright/test',
-    testMatch: "**/*.spec.js"
+    preset: 'jest-playwright-preset',
+    testMatch: ["./src/tests/**.api.js"],
+    reporters: ["jest-allure"]
 };
