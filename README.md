@@ -10,7 +10,7 @@ TAF spans over three primary testing layers:
 
 ## Tools Used
 
-- **Playwright:** Used for browser automation. Configured via `playwright.config.js`.
+- **Playwright:** Used for browser automation. Configured via `jest-playwright.config.js`.
 - **Jest:** A powerful JavaScript testing framework used as the base for our testing suite. It's configured via `jest.config.js`.
 - **Chai:** A popular assertion library is used to verify our test results.
 - **Mocha:** The test runner responsible for executing our tests and providing a report.
@@ -27,7 +27,8 @@ TAF spans over three primary testing layers:
 ## How to Run Tests
 
 1. Run `npm install` to install all the necessary dependencies.
-2. Run `npm test` to launch test execution.
+2. Run `npm test` to launch test execution with Playwright test runner.
+3. Run `npm j-test` to launch test execution with Playwright test runner.
 
 After running the tests, an Allure report can be generated using the command `allure generate --clean && allure open`. This will show a detailed report of all the test cases including the ones that failed with the error message.
 
