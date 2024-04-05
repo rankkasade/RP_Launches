@@ -4,6 +4,7 @@ describe('RP Launches API Test with Authorization using Jest for Parallelization
     const projectName = 'hr_atm_project';
     let api;
     let rpData;
+    const getRandomId = () => rpData.data.launchIds[Math.floor(Math.random() * rpData.data.launchIds.length)];
 
     beforeAll(async () => {
         api = axios.create({
@@ -17,10 +18,10 @@ describe('RP Launches API Test with Authorization using Jest for Parallelization
     });
 
       test('Compare Launches', async () => {
-        const randomId1 = rpData.data.launchIds[Math.floor(Math.random() * rpData.data.launchIds.length)];
+        const randomId1 = getRandomId();
         let randomId2;
         do {
-            randomId2 = rpData.data.launchIds[Math.floor(Math.random() * rpData.data.launchIds.length)];
+            randomId2 = getRandomId();
         } while(randomId2 === randomId1);
         const response = await api.get(`${projectName}/launch/compare?ids=${randomId1},${randomId2}`);
         expect(response.status).toEqual(200);

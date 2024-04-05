@@ -44,7 +44,7 @@
   "description": "",
   "scripts": {
     "test": "npx playwright test -c ./jest-playwright.config.js",
-    "j-test": "jest",
+    "j-test": "jest -c ./jest.config.js",
     "prepare": "husky"
   },
   "husky": {
