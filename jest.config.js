@@ -4,6 +4,7 @@ module.exports = {
     testMatch: ['<rootDir>/src/tests/**/*.j-test.js'],
     reporters: ["jest-allure"],
     moduleFileExtensions: ['js', 'json', 'jsx', 'node'],
+    setupFiles: ['./jest-setup.js'],
     transform: {
         '^.+\\.jsx?$': 'babel-jest',
     }
