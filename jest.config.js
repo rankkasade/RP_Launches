@@ -1,5 +1,11 @@
 module.exports = {
     preset: 'jest-playwright-preset',
-    testMatch: ["./src/tests/**.api.js"],
-    reporters: ["jest-allure"]
+    maxConcurrency: 3,
+    testMatch: ['<rootDir>/src/tests/**/*.j-test.js'],
+    //reporters: ["jest-allure"],
+    moduleFileExtensions: ['js', 'json', 'jsx', 'node'],
+    setupFiles: ['./jest-setup.js'],
+    transform: {
+        '^.+\\.jsx?$': 'babel-jest',
+    }
 };
