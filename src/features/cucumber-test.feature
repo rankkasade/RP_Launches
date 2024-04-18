@@ -18,6 +18,7 @@ Feature: RP Launches API Test with Authorization
       | 132 |
       | 133 |
 
+    @process-demo-data
   Scenario: Compare launches and ensure response status is 200
     When I compare two different launches
     Then I should get a successful response

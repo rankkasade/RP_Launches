@@ -1,6 +1,6 @@
 const axios = require('axios');
 const assert = require('assert');
-const { Given, When, Then, After, BeforeAll, AfterAll } = require('@cucumber/cucumber');
+const { Given, When, Then, Before, After, BeforeAll, AfterAll } = require('@cucumber/cucumber');
 const { setDefaultTimeout } = require("@cucumber/cucumber");
 setDefaultTimeout(60 * 1000);
 
@@ -12,6 +12,10 @@ const getRandomId = () => rpData.data.launchIds[Math.floor(Math.random() * rpDat
 
 BeforeAll(() => {
     require('dotenv').config();
+});
+
+Before({tags: "@process-demo-data"}, async function() {
+    rpData = await api.post(`demo/${projectName}/generate`, { createDashboard: false });
 });
 
 Given('I am authorized user with a project {string}', (project) => {
@@ -29,7 +33,6 @@ When('I get the list of all launches', async () => {
 });
 
 When('I compare two different launches', async function() {
-    rpData = await api.post(`demo/${projectName}/generate`, { createDashboard: false });
     const randomId1 = getRandomId();
     let randomId2;
     do {
@@ -57,6 +60,6 @@ Then('response should be an array',  () => {
     assert.strictEqual(Array.isArray(response.data.content), true);
 });
 
-AfterAll(async () => {
+After({tags: "@process-demo-data"}, async function () {
     await api.delete(`${projectName}/launch`, { data: { ids: rpData.data.launchIds } });
 });
