@@ -1,6 +1,6 @@
 const axios = require('axios');
 const assert = require('assert');
-const { Given, When, Then, After, BeforeAll } = require('@cucumber/cucumber');
+const { Given, When, Then, After, BeforeAll, AfterAll } = require('@cucumber/cucumber');
 const { setDefaultTimeout } = require("@cucumber/cucumber");
 setDefaultTimeout(60 * 1000);
 
@@ -55,4 +55,8 @@ Then('I should get a successful response', () => {
 
 Then('response should be an array',  () => {
     assert.strictEqual(Array.isArray(response.data.content), true);
+});
+
+AfterAll(async () => {
+    await api.delete(`${projectName}/launch`, { data: { ids: rpData.data.launchIds } });
 });
