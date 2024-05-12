@@ -48,7 +48,8 @@
     "test": "npx playwright test -c ./jest-playwright.config.js",
     "j-test": "jest -c ./jest.config.js",
     "test-feature": "npx cucumber-js --parallel 3",
-    "prepare": "husky"
+    "prepare": "husky",
+    "api-tests": "cd api-tests && npm run test"
   },
   "husky": {
     "hooks": {
