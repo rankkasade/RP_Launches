@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tests for RP Launches API should change launch info 1`] = `
+{
+  "message": "Attributes successfully updated",
+}
+`;
+
+exports[`Tests for RP Launches API should have the right project launches 1`] = `
+[
+  "Demo Api Tests",
+]
+`;
