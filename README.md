@@ -34,6 +34,7 @@ TAF spans over three primary testing layers:
 3. Run `npm j-test` to launch test execution with Jest test runner.
 4. Run `npm test-feature` to launch test execution with Cucumber test runner.
 5. Run `npm api-tests` to launch test execution of API tests for Launches feature.
+6. Run `cypress run` in cypress-tests folder to launch test execution of UI tests for Launches feature with Cypress.
 
 
 After running the tests, an Allure report can be generated using the command `allure generate --clean && allure open`. This will show a detailed report of all the test cases including the ones that failed with the error message.
