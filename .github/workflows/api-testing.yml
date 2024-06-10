@@ -23,14 +23,11 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
 
-    - name: Go to API Tests folder
-      run: cd ./api-tests    
-
-    - name: Install Dependencies
-      run: npm ci
+    - name: Install Dependencies in API tests folder
+      run: cd ./api-tests && npm ci
 
     - name: Run API tests for ReportPortal API
-      run: npm run test
+      run: cd ./api-tests && npm run test
 
     
 
