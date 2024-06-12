@@ -1,0 +1,57 @@
+name: API Testing
+
+on:
+  push:
+    branches: ["master", "main"]
+  pull_request:
+    branches: ["master", "main"]
+  schedule:
+    - cron: "0 12 * * *"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+
+      - name: Install Dependencies in API tests folder
+        run: cd ./api-tests && npm ci
+
+      - name: Run API tests for ReportPortal API
+        run: cd ./api-tests && npm run test
+        env:
+          BASE_URL: ${{ secrets.BASE_URL }}
+          API_KEY: ${{ secrets.API_KEY }}
+          PROJECT_NAME: ${{ secrets.PROJECT_NAME }}
+
+      - name: Upload reports for this run
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: api-testing-report-${{ matrix.node-version }}
+          path: api-tests/report/
+          retention-days: 30
+
+      - name: Upload coverage reports for this run
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: api-testing-coverage-report-${{ matrix.node-version }}
+          path: api-tests/coverage/
+          retention-days: 30
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v4.0.1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
