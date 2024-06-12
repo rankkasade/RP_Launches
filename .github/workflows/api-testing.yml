@@ -39,7 +39,7 @@ jobs:
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: api-testing-report
+          name: api-testing-report-${{ matrix.node-version }}
           path: api-tests/report/
           retention-days: 30
 
@@ -47,7 +47,7 @@ jobs:
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: api-testing-coverage-report
+          name: api-testing-coverage-report-${{ matrix.node-version }}
           path: api-tests/coverage/
           retention-days: 30
 
